@@ -6,6 +6,6 @@ export default {
   out: "./src/database/migrations",
   verbose: true,
   dbCredentials: {
-    connectionString: "postgres://postgres:123@localhost:5432/ocean"!,
+    connectionString: "postgres://tobRoot:techOcean15@tech-ocean-blue.postgres.database.azure.com:5432/ocean",
   },
 } satisfies Config;
