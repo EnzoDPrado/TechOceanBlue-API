@@ -12,8 +12,8 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "moduleResolution": "node16",
-      "baseUrl": "src",
-      "outDir": "dist",
+      "outDir": "./dist",
+      "rootDir": "./src",
       "sourceMap": true,
       "noImplicitAny": true
     },

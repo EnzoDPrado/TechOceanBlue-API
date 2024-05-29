@@ -1,4 +1,4 @@
-import { TemperatureRobot } from "database/schemas"
+import { TemperatureRobot } from "../database/schemas"
 
 export interface OceansTemperaturesResponse{
    Oceans: OceanTemperatureResponse[]

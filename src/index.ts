@@ -1,19 +1,20 @@
-import { dataBase } from "database";
-import { Ocean, TemperatureRobot, Trash, oceanTrash, temperatureRobot, trash } from "database/schemas";
+import { dataBase } from "./database";
+import { Ocean, TemperatureRobot, Trash, oceanTrash, temperatureRobot, trash } from "./database/schemas";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 import express, { Request, Response } from "express";
 import { createServer } from "http";
-import { OceanInfoResponse, OceanResponse } from "types/ocean-info-response";
-import { OceanTemperatureResponse, OceansTemperaturesResponse } from "types/ocean-temperature-response";
-import { RegisterTrashBody } from "types/register-trash-body";
-import { TemperatureBody } from "types/temperature-body";
-
+import { OceanInfoResponse, OceanResponse } from "./types/ocean-info-response";
+import { OceanTemperatureResponse, OceansTemperaturesResponse } from "./types/ocean-temperature-response";
+import { RegisterTrashBody } from "./types/register-trash-body";
+import { TemperatureBody } from "./types/temperature-body";
+import dotenv from 'dotenv';
+dotenv.config()
 
 const app = express();
 const cors = require('cors');
 const server = createServer(app);
-const port = 8080;
+const port = process.env.PORT ?? 8080;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 

@@ -1,4 +1,4 @@
-import { Trash } from "database/schemas"
+import { Trash } from "../database/schemas"
 
 export interface OceanInfoResponse{
    Oceans: OceanResponse[]
