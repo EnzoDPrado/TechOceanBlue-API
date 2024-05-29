@@ -1,4 +1,6 @@
 import type { Config } from "drizzle-kit";
+import dotenv from 'dotenv';
+dotenv.config()
 
 export default {
   dialect: "postgresql",
@@ -6,6 +8,9 @@ export default {
   out: "./src/database/migrations",
   verbose: true,
   dbCredentials: {
-    connectionString: "postgres://default:yKfa9sZx6JeT@ep-muddy-king-a5986ngf-pooler.us-east-2.aws.neon.tech:5432/verceldb?sslmode=require"!,
+    connectionString: process.env.DATABASE_URL!,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
 } satisfies Config;
