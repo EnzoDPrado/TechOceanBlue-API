@@ -1,0 +1,245 @@
+{
+  "id": "d8958237-8cbc-44fb-9274-d9a5cb9bac40",
+  "prevId": "a7eb3d45-453d-473c-b5cb-b91521b2d727",
+  "version": "6",
+  "dialect": "postgresql",
+  "tables": {
+    "public.tbl_ocean": {
+      "name": "tbl_ocean",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "latitude_min": {
+          "name": "latitude_min",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude_min": {
+          "name": "longitude_min",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "latitude_max": {
+          "name": "latitude_max",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude_max": {
+          "name": "longitude_max",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "tbl_ocean_name_unique": {
+          "name": "tbl_ocean_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    },
+    "public.tbl_robot": {
+      "name": "tbl_robot",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.tbl_trash": {
+      "name": "tbl_trash",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "robot_id": {
+          "name": "robot_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tbl_trash_robot_id_tbl_robot_id_fk": {
+          "name": "tbl_trash_robot_id_tbl_robot_id_fk",
+          "tableFrom": "tbl_trash",
+          "tableTo": "tbl_robot",
+          "columnsFrom": [
+            "robot_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.tbl_ocean_trash": {
+      "name": "tbl_ocean_trash",
+      "schema": "",
+      "columns": {
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ocean_id": {
+          "name": "ocean_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trash_id": {
+          "name": "trash_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tbl_ocean_trash_ocean_id_tbl_ocean_id_fk": {
+          "name": "tbl_ocean_trash_ocean_id_tbl_ocean_id_fk",
+          "tableFrom": "tbl_ocean_trash",
+          "tableTo": "tbl_ocean",
+          "columnsFrom": [
+            "ocean_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tbl_ocean_trash_trash_id_tbl_trash_id_fk": {
+          "name": "tbl_ocean_trash_trash_id_tbl_trash_id_fk",
+          "tableFrom": "tbl_ocean_trash",
+          "tableTo": "tbl_trash",
+          "columnsFrom": [
+            "trash_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
